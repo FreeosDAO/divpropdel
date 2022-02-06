@@ -1,0 +1,925 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "account",
+            "base": "",
+            "fields": [
+                {
+                    "name": "balance",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "allocate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "from",
+                    "type": "name"
+                },
+                {
+                    "name": "to",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "burn",
+            "base": "",
+            "fields": [
+                {
+                    "name": "burner",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "burner_whitelist",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "burneradd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "burnererase",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "claim",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "create",
+            "base": "",
+            "fields": [
+                {
+                    "name": "issuer",
+                    "type": "name"
+                },
+                {
+                    "name": "maximum_supply",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "currency_stats",
+            "base": "",
+            "fields": [
+                {
+                    "name": "supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "max_supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "conditional_supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "issuer",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "currentrate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "price",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "globalres_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "p_key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "gresult",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "init",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iterations_start",
+                    "type": "time_point"
+                }
+            ]
+        },
+        {
+            "name": "maintain",
+            "base": "",
+            "fields": [
+                {
+                    "name": "action",
+                    "type": "string"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "mint",
+            "base": "",
+            "fields": [
+                {
+                    "name": "minter",
+                    "type": "name"
+                },
+                {
+                    "name": "to",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "minter_whitelist",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "minteradd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "mintererase",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "mintfreeby",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "paramerase",
+            "base": "",
+            "fields": [
+                {
+                    "name": "paramname",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "parameter",
+            "base": "",
+            "fields": [
+                {
+                    "name": "paramname",
+                    "type": "name"
+                },
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "paramupsert",
+            "base": "",
+            "fields": [
+                {
+                    "name": "paramname",
+                    "type": "name"
+                },
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "ratify",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "ratify_vote",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "reguser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "reregister",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "reward",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iteration",
+                    "type": "uint16"
+                },
+                {
+                    "name": "iteration_cls",
+                    "type": "asset"
+                },
+                {
+                    "name": "participants",
+                    "type": "uint32"
+                },
+                {
+                    "name": "issuance_rate",
+                    "type": "float64"
+                },
+                {
+                    "name": "mint_fee_percent",
+                    "type": "float64"
+                },
+                {
+                    "name": "locking_threshold",
+                    "type": "float64"
+                },
+                {
+                    "name": "pool",
+                    "type": "bool"
+                },
+                {
+                    "name": "burn",
+                    "type": "bool"
+                },
+                {
+                    "name": "ratified",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "survey",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "r0",
+                    "type": "bool"
+                },
+                {
+                    "name": "r1",
+                    "type": "bool"
+                },
+                {
+                    "name": "r2",
+                    "type": "bool"
+                },
+                {
+                    "name": "r3",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r4",
+                    "type": "bool"
+                },
+                {
+                    "name": "r5",
+                    "type": "bool"
+                },
+                {
+                    "name": "r6",
+                    "type": "bool"
+                },
+                {
+                    "name": "r7",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r8",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r9",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r10",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r11",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r12",
+                    "type": "uint8"
+                },
+                {
+                    "name": "r13",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "svr",
+            "base": "",
+            "fields": [
+                {
+                    "name": "survey1",
+                    "type": "uint32"
+                },
+                {
+                    "name": "survey2",
+                    "type": "uint32"
+                },
+                {
+                    "name": "survey3",
+                    "type": "uint32"
+                },
+                {
+                    "name": "survey4",
+                    "type": "uint32"
+                },
+                {
+                    "name": "vote1",
+                    "type": "uint32"
+                },
+                {
+                    "name": "vote2",
+                    "type": "uint32"
+                },
+                {
+                    "name": "vote3",
+                    "type": "uint32"
+                },
+                {
+                    "name": "vote4",
+                    "type": "uint32"
+                },
+                {
+                    "name": "ratify1",
+                    "type": "uint32"
+                },
+                {
+                    "name": "ratify2",
+                    "type": "uint32"
+                },
+                {
+                    "name": "ratify3",
+                    "type": "uint32"
+                },
+                {
+                    "name": "ratify4",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "system",
+            "base": "",
+            "fields": [
+                {
+                    "name": "init",
+                    "type": "time_point"
+                },
+                {
+                    "name": "iteration",
+                    "type": "uint16"
+                },
+                {
+                    "name": "usercount",
+                    "type": "uint32"
+                },
+                {
+                    "name": "claimevents",
+                    "type": "uint32"
+                },
+                {
+                    "name": "participants",
+                    "type": "uint32"
+                },
+                {
+                    "name": "cls",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "targetrate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "price",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "tick",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "transfadd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "transfer_whitelist",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "transferase",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "user",
+            "base": "",
+            "fields": [
+                {
+                    "name": "stake",
+                    "type": "asset"
+                },
+                {
+                    "name": "account_type",
+                    "type": "string"
+                },
+                {
+                    "name": "registered_iteration",
+                    "type": "uint32"
+                },
+                {
+                    "name": "staked_iteration",
+                    "type": "uint32"
+                },
+                {
+                    "name": "votes",
+                    "type": "uint32"
+                },
+                {
+                    "name": "issuances",
+                    "type": "uint32"
+                },
+                {
+                    "name": "last_issuance",
+                    "type": "uint32"
+                },
+                {
+                    "name": "total_issuance_amount",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "version",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "vote",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "q1response",
+                    "type": "uint8"
+                },
+                {
+                    "name": "q2response",
+                    "type": "uint8"
+                },
+                {
+                    "name": "q3response",
+                    "type": "float64"
+                },
+                {
+                    "name": "q4response",
+                    "type": "string"
+                },
+                {
+                    "name": "q5response",
+                    "type": "uint8"
+                },
+                {
+                    "name": "q6choice1",
+                    "type": "uint8"
+                },
+                {
+                    "name": "q6choice2",
+                    "type": "uint8"
+                },
+                {
+                    "name": "q6choice3",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "votecast",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iteration",
+                    "type": "uint32"
+                },
+                {
+                    "name": "participants",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q1average",
+                    "type": "float64"
+                },
+                {
+                    "name": "q2average",
+                    "type": "float64"
+                },
+                {
+                    "name": "q3average",
+                    "type": "float64"
+                },
+                {
+                    "name": "q4choice1",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q4choice2",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q5average",
+                    "type": "float64"
+                },
+                {
+                    "name": "q6choice1",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q6choice2",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q6choice3",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q6choice4",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q6choice5",
+                    "type": "uint32"
+                },
+                {
+                    "name": "q6choice6",
+                    "type": "uint32"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "allocate",
+            "type": "allocate",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "burn",
+            "type": "burn",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "burneradd",
+            "type": "burneradd",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "burnererase",
+            "type": "burnererase",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "claim",
+            "type": "claim",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "create",
+            "type": "create",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "currentrate",
+            "type": "currentrate",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "init",
+            "type": "init",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "maintain",
+            "type": "maintain",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mint",
+            "type": "mint",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "minteradd",
+            "type": "minteradd",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mintererase",
+            "type": "mintererase",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mintfreeby",
+            "type": "mintfreeby",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "paramerase",
+            "type": "paramerase",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "paramupsert",
+            "type": "paramupsert",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "ratify",
+            "type": "ratify",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "reguser",
+            "type": "reguser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "reregister",
+            "type": "reregister",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "survey",
+            "type": "survey",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "targetrate",
+            "type": "targetrate",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "tick",
+            "type": "tick",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "transfadd",
+            "type": "transfadd",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "transferase",
+            "type": "transferase",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "version",
+            "type": "version",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "vote",
+            "type": "vote",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "accounts",
+            "type": "account",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "burners",
+            "type": "burner_whitelist",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "globalres",
+            "type": "globalres_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "minters",
+            "type": "minter_whitelist",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "parameters",
+            "type": "parameter",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "ratify",
+            "type": "ratify",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "rewards",
+            "type": "reward",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "stat",
+            "type": "currency_stats",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "svrs",
+            "type": "svr",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "system",
+            "type": "system",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "transferers",
+            "type": "transfer_whitelist",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "users",
+            "type": "user",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "votescast",
+            "type": "votecast",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}

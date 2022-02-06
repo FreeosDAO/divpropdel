@@ -1,0 +1,1 @@
+eosio-cpp -o divpropdel.wasm divpropdel.cpp --abigen
