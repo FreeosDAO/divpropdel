@@ -21,7 +21,7 @@ void divpropdel::version() {
 
     Purpose
 
-      Called from frontend - when proposal need to be cancelled but already is once voted. 
+      Called from frontend - when proposal need to be cancelled but already was once voted. 
       Proposer calls this action to set trigger on and pass to local trigger_table (type postbox_table)
       second_voter name.
     
@@ -32,8 +32,8 @@ void divpropdel::version() {
     
     Operations
     
-      - verify parameters against dividenda's whitelist table
-      - set second_voter name to local trigger_table  
+      - verify parameters against dividenda's 'whitelist' table
+      - set second_voter name to local 'trigger_table' (postboxs) 
 */
 
 // ACTION
@@ -41,7 +41,7 @@ void divpropdel::dropmessage(
   name proposer,              // requesting proposer 
   name second_voter )         // request receiver       
 {
-// remote parameter verification: verify proposer and voter in whitelist table at dividenda contract.
+// both parameters verification: verify proposer and voter in whitelist table at dividenda contract.
 check( (auth_vip(proposer)==PROPOSER), "proposername not authorized by whitelist!" );
 check( (auth_vip(second_voter)==VOTER_A)||(auth_vip(second_voter)==VOTER_B), "second_voter not authorized by whitelist!" );
 require_auth(proposer);
@@ -87,7 +87,7 @@ postbox_table trigger(get_self(), get_self().value);
 
 // ACTION
 void divpropdel::div2ndvote( name voter ) {
-  check( (auth_vip(voter)==VOTER_A)||(auth_vip(voter)==VOTER_B), "second voter not authorized by whitelist!" );
+  // check( (auth_vip(voter)==VOTER_A)||(auth_vip(voter)==VOTER_B), "second voter not authorized by whitelist!" );
   require_auth(voter);
 
   // Call rejection vote in dividenda for second voter
@@ -96,7 +96,8 @@ void divpropdel::div2ndvote( name voter ) {
         permission_level{voter, "active"_n},
         name(div_acct),   
         "proposalvote"_n,
-        std::make_tuple(get_self(), voter, uservote )
+        // std::make_tuple(get_self(), voter, uservote )
+        std::make_tuple(div_acct, voter, uservote ) // ??
         );
   negativevote.send();
   
@@ -118,8 +119,57 @@ void divpropdel::remove()
     trigger.erase(pro_itr);
 }
 
+// Querying account type (0-3) for the frontend.
+// Answer is send through notify_front().   - PROVIDED IN THE MEANS OF TEST
+//
+// ACTION
+void divpropdel::query( name eosaccount )
+{
+  require_auth( eosaccount );
+  // Clean up notify_front
+  clearfront();                                                   
+  // Identify account on whitelist (1,2, or 3) else (0)
+  uint8_t answer;
+  answer = auth_vip(eosaccount);
+  notify_front(answer);
+}  
+//
+//---
+
+  /*
+   +-----------------------------------
+   +  notify_front -  
+   +-----------------------------------
+             +
+             +  Build up a queue of warning messages for frontend.    
+             */
+
+void divpropdel::notify_front( uint8_t number ) 
+{
+  messages_table errortable( get_self(), get_self().value );                                  
+  auto ee = errortable.emplace( get_self(), [&](auto &e) {    
+    e.key = errortable.available_primary_key(); 
+    e.errorno = number;
+  } );                                                                                      
+} 
+//
+//---
+
+
+// Clear frontend notification buffer created previously by notify_front    
+// ACTION
+void divpropdel::clearfront() {
+    messages_table    errortable(get_self(), get_self().value);
+    auto   rec_itr  = errortable.begin();
+    while (rec_itr != errortable.end()) {
+           rec_itr  = errortable.erase(rec_itr);
+    }
+} 
+//
+//---
+
 /* +-----------------------------------
-   +  removewhite -  TODO REWRITE
+   +  removewhite -  TODO REMOVE
    +-----------------------------------
              +
              +  Remove completely white_list table.   
@@ -137,5 +187,9 @@ void divpropdel::remove()
 //}
 //
 //---
+
+
 //==================================================================================
 } // end of namespace freedao
+
+
