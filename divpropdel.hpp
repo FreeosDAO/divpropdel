@@ -22,10 +22,11 @@ public:
   // Note: 'Second voter' is voter who should vote as the second (this may be VOTER_A or VOTER_B), not necessarily the 2nd voter on the list!
   const uint8_t VOTER_A  = 2;
   const uint8_t VOTER_B  = 3;
+  
 
   [[eosio::action]] void version(); 
   [[eosio::action]] void dropmessage(name proposer, name second_voter);
-  [[eosio::action]] void div2ndvote( name voter );
+  [[eosio::action]] void div2ndvote( name votername );
   [[eosio::action]] void remove();       
 
     /**
@@ -101,7 +102,7 @@ private:
     notify_front( v->idno ); // TEST 
     return v->idno;     // user verified 1,2, or 3.
   } 
-  notify_front( 0 ); // TEST 
+  notify_front( 0 );
   return 0;  // user not verified 0.   
   }
 

@@ -13,7 +13,7 @@
             "base": "",
             "fields": [
                 {
-                    "name": "voter",
+                    "name": "votername",
                     "type": "name"
                 }
             ]

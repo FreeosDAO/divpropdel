@@ -86,18 +86,18 @@ postbox_table trigger(get_self(), get_self().value);
 */
 
 // ACTION
-void divpropdel::div2ndvote( name voter ) {
-  // check( (auth_vip(voter)==VOTER_A)||(auth_vip(voter)==VOTER_B), "second voter not authorized by whitelist!" );
-  require_auth(voter);
+void divpropdel::div2ndvote( name votername ) {
+  check( (auth_vip(votername)==VOTER_A)||(auth_vip(votername)==VOTER_B), "second voter not authorized by whitelist!" );
+  require_auth(votername);
 
   // Call rejection vote in dividenda for second voter
-  const uint8_t uservote = 1; // hard pre-set vote reject
+  const uint8_t vote = 1; // hard pre-set vote reject
+  
   action negativevote = action(
-        permission_level{voter, "active"_n},
+        permission_level{"votername"_n, "active"_n},
         name(div_acct),   
         "proposalvote"_n,
-        // std::make_tuple(get_self(), voter, uservote )
-        std::make_tuple(div_acct, voter, uservote ) // ??
+        std::make_tuple(votername, vote) // note: it must be used the same names like names of target parameters (??)
         );
   negativevote.send();
   
@@ -107,6 +107,7 @@ void divpropdel::div2ndvote( name voter ) {
   check(pro_itr != trigger.end(), "Trigger Record to remove does not exist.");
     trigger.erase(pro_itr);
 }
+// ===
 
 // ACTION 
 void divpropdel::remove()
@@ -152,7 +153,6 @@ void divpropdel::notify_front( uint8_t number )
     e.errorno = number;
   } );                                                                                      
 } 
-//
 //---
 
 
@@ -167,27 +167,6 @@ void divpropdel::clearfront() {
 } 
 //
 //---
-
-/* +-----------------------------------
-   +  removewhite -  TODO REMOVE
-   +-----------------------------------
-             +
-             +  Remove completely white_list table.   
-             */
-
-// [[eosio::action]]
-// void divpropdel::removewhite(){
-//  require_auth( _self );
-//  whitelist_index white_list(get_self(), get_self().value);
-//  // Delete all records in _messages table
-//  auto itr = white_list.begin();
-//    while (itr != white_list.end()) {
-//       itr = white_list.erase(itr);
-//    }
-//}
-//
-//---
-
 
 //==================================================================================
 } // end of namespace freedao
