@@ -9,16 +9,6 @@
             "fields": []
         },
         {
-            "name": "div2ndvote",
-            "base": "",
-            "fields": [
-                {
-                    "name": "votername",
-                    "type": "name"
-                }
-            ]
-        },
-        {
             "name": "dropmessage",
             "base": "",
             "fields": [
@@ -29,6 +19,16 @@
                 {
                     "name": "second_voter",
                     "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "notifyfront",
+            "base": "",
+            "fields": [
+                {
+                    "name": "number",
+                    "type": "uint8"
                 }
             ]
         },
@@ -47,19 +47,14 @@
             ]
         },
         {
-            "name": "query",
+            "name": "remove",
             "base": "",
             "fields": [
                 {
-                    "name": "eosaccount",
+                    "name": "vip",
                     "type": "name"
                 }
             ]
-        },
-        {
-            "name": "remove",
-            "base": "",
-            "fields": []
         },
         {
             "name": "status_messages",
@@ -106,18 +101,13 @@
             "ricardian_contract": ""
         },
         {
-            "name": "div2ndvote",
-            "type": "div2ndvote",
-            "ricardian_contract": ""
-        },
-        {
             "name": "dropmessage",
             "type": "dropmessage",
             "ricardian_contract": ""
         },
         {
-            "name": "query",
-            "type": "query",
+            "name": "notifyfront",
+            "type": "notifyfront",
             "ricardian_contract": ""
         },
         {

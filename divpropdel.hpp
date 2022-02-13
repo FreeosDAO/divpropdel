@@ -18,6 +18,7 @@ public:
   using contract::contract;
 
   const name div_acct  = "freeosdiv5"_n; // verify and change  // dividenda_account
+  const name this_account  = "divpropdel"_n;  
   const uint8_t PROPOSER = 1;
   // Note: 'Second voter' is voter who should vote as the second (this may be VOTER_A or VOTER_B), not necessarily the 2nd voter on the list!
   const uint8_t VOTER_A  = 2;
@@ -26,24 +27,9 @@ public:
 
   [[eosio::action]] void version(); 
   [[eosio::action]] void dropmessage(name proposer, name second_voter);
-  [[eosio::action]] void div2ndvote( name votername );
-  [[eosio::action]] void remove();       
+  // [[eosio::action]] void div2ndvote( name votername );
+  [[eosio::action]] void remove(name vip);       
 
-    /**
-    * query action
-    * (informative only - the action do not change any values) 
-    *
-    * @param eosaccount - the account which we query. This account is returned from frontend wallet as an account
-    * of a person who currently is logged on. 
-    * The function return the type of the account to notify_front.
-    *
-    * @pre permissions are the same like eosaccount parameter
-    *
-    */
-    [[eosio::action]]
-    void query( name eosaccount ); 
-              
-  
     // helper functions used only internally 
 
     /**
@@ -53,7 +39,8 @@ public:
      * given number is added to the queue (a vector). The vector is read by the front end.
      * The vector can be erased by the clearfront action. 
      */
-    void notify_front( uint8_t number );     
+    [[eosio::action]]  
+    void notifyfront( uint8_t number );     
 
 
     /**
@@ -99,10 +86,10 @@ private:
   whitelist_index white_list(div_acct, div_acct.value); // looking at original dividenda contract table
   auto v = white_list.find(user.value); // Is the user on the list?
   if (v!=white_list.end()){ // process
-    notify_front( v->idno ); // TEST 
+    notifyfront( v->idno ); // TEST 
     return v->idno;     // user verified 1,2, or 3.
   } 
-  notify_front( 0 );
+  notifyfront( 0 );
   return 0;  // user not verified 0.   
   }
 

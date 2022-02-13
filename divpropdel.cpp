@@ -86,66 +86,50 @@ postbox_table trigger(get_self(), get_self().value);
 */
 
 // ACTION
-void divpropdel::div2ndvote( name votername ) {
-  check( (auth_vip(votername)==VOTER_A)||(auth_vip(votername)==VOTER_B), "second voter not authorized by whitelist!" );
-  require_auth(votername);
-
-  // Call rejection vote in dividenda for second voter
-  const uint8_t vote = 1; // hard pre-set vote reject
-  
-  action negativevote = action(
-        permission_level{"votername"_n, "active"_n},
-        name(div_acct),   
-        "proposalvote"_n,
-        std::make_tuple(votername, vote) // note: it must be used the same names like names of target parameters (??)
-        );
-  negativevote.send();
-  
-  // reset trigger table
-  postbox_table trigger(get_self(), get_self().value);
-  auto pro_itr = trigger.begin();
-  check(pro_itr != trigger.end(), "Trigger Record to remove does not exist.");
-    trigger.erase(pro_itr);
-}
-// ===
+// void divpropdel::div2ndvote( name votername ) {
+//  check( (auth_vip(votername)==VOTER_A)||(auth_vip(votername)==VOTER_B), "second voter not authorized by whitelist!" );
+//  require_auth(votername);
+//
+//  // Call rejection vote in dividenda for second voter
+//  const uint8_t vote = 1; // hard pre-set vote reject
+//  
+//  action negativevote = action(
+//        permission_level{votername, "active"_n},
+//        name(div_acct),   
+//        "proposalvote"_n,
+//        std::make_tuple(votername, vote) // note: it must be used the same names like names of target parameters (??)
+//        );
+//  negativevote.send();
+//  
+//  // reset trigger table
+//  postbox_table trigger(get_self(), get_self().value);
+//  auto pro_itr = trigger.begin();
+//  check(pro_itr != trigger.end(), "Trigger Record to remove does not exist.");
+//    trigger.erase(pro_itr);
+// }
+// // ===
 
 // ACTION 
-void divpropdel::remove()
+void divpropdel::remove(name vip)
 {
-  require_auth( get_self() );
+  check( ((auth_vip(vip)==PROPOSER)||(auth_vip(vip)==VOTER_A)||(auth_vip(vip)==VOTER_B)), "VIP not authorized by whitelist!" );
+  require_auth( vip );
   // reset trigger table
   postbox_table trigger(get_self(), get_self().value);
   auto pro_itr = trigger.begin();
   check(pro_itr != trigger.end(), "Trigger Record to remove does not exist.");
     trigger.erase(pro_itr);
 }
-
-// Querying account type (0-3) for the frontend.
-// Answer is send through notify_front().   - PROVIDED IN THE MEANS OF TEST
-//
-// ACTION
-void divpropdel::query( name eosaccount )
-{
-  require_auth( eosaccount );
-  // Clean up notify_front
-  clearfront();                                                   
-  // Identify account on whitelist (1,2, or 3) else (0)
-  uint8_t answer;
-  answer = auth_vip(eosaccount);
-  notify_front(answer);
-}  
-//
-//---
 
   /*
    +-----------------------------------
-   +  notify_front -  
+   +  notify_front -  TEST
    +-----------------------------------
              +
              +  Build up a queue of warning messages for frontend.    
              */
 
-void divpropdel::notify_front( uint8_t number ) 
+void divpropdel::notifyfront( uint8_t number ) // THIS is test. REMOVE a.s.a.p.
 {
   messages_table errortable( get_self(), get_self().value );                                  
   auto ee = errortable.emplace( get_self(), [&](auto &e) {    
@@ -156,9 +140,10 @@ void divpropdel::notify_front( uint8_t number )
 //---
 
 
-// Clear frontend notification buffer created previously by notify_front    
+// Clear frontend notification buffer created previously by notify_front    TEST
 // ACTION
 void divpropdel::clearfront() {
+    // no authorization - this is test - REMOVE a.s.a.p
     messages_table    errortable(get_self(), get_self().value);
     auto   rec_itr  = errortable.begin();
     while (rec_itr != errortable.end()) {
@@ -170,5 +155,3 @@ void divpropdel::clearfront() {
 
 //==================================================================================
 } // end of namespace freedao
-
-
